@@ -7,14 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- AURORO so'zi -->
     <h1 class="game-title">AURORO</h1>
-
-    <!-- Start game tugmalari -->
     <div class="buttons">
-        <button class="start-game">Game 1</button>
-        <button class="start-game">Game 2</button>
+        <button id="start-pong">Game 1: Pong</button>
+        <button id="start-whack">Game 2: Whack-a-Mole</button>
     </div>
+    <section id="pong-section" class="game-section">
+        <canvas id="pong" width="800" height="400"></canvas>
+    </section>
+    <section id="whack-a-mole-section" class="game-section">
+        <div class="score-container">
+            <p>Score: <span class="score">0</span></p>
+        </div>
+        <div class="game-container">
+            <div class="hole"><div class="mole"></div></div>
+            <div class="hole"><div class="mole"></div></div>
+            <div class="hole"><div class="mole"></div></div>
+            <div class="hole"><div class="mole"></div></div>
+            <div class="hole"><div class="mole"></div></div>
+            <div class="hole"><div class="mole"></div></div>
+        </div>
+    </section>
+    <script src="js/pong.js"></script>
+    <script src="js/whack-a-mole.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
-

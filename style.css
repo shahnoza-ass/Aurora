@@ -1,71 +1,93 @@
-/* Umumiy body sozlamalari */
-body {
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
-    color: #fff;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('background.jpg'); /* Orqa fon rasmi */
+    background-size: cover;
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('background.jpg'); /* Orqa fon rasm yo'li */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    animation: backgroundAnimation 20s infinite linear; /* Orqa fon animatsiyasi qo'shildi */
 }
 
-/* AURORO so'zi uchun stil */
-.game-title {
-    font-size: 5rem; /* Katta hajmdagi matn */
-    color: #fff; /* Oq rangdagi matn */
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.container {
     text-align: center;
-    text-shadow: none; /* Pushti fonni olib tashlash */
-    margin-bottom: 60px; /* Tugmalarga joy qoldirish */
-    font-weight: bold; /* So'zni qalin qilish */
-    animation: auroraAnim 4s forwards, enlargeLetters 6s forwards; /* Animatsiyalar */
 }
 
-/* AURORO so'zi uchun animatsiya */
-@keyframes auroraAnim {
-    0% {
-        font-size: 10rem; /* Dastlab harflar juda katta */
-        letter-spacing: -1rem; /* Harflar o‘rtasidagi masofa kichik */
-        color: #6a0dad; /* Binafsha rang */
-    }
-    100% {
-        font-size: 5rem; /* So'z asl hajmiga qaytadi */
-        letter-spacing: 0.1rem; /* Harflar orasidagi masofa kengayadi */
-        color: #fff; /* Rang oqga qaytadi */
-    }
+.play-with-me h2 {
+    font-size: 2em;
+    color: white;
+    margin-bottom: 50px;
 }
 
-/* Har bir harfni kattalashtirish va harf animatsiyasi */
-@keyframes enlargeLetters {
-    0% {
-        transform: scale(10); /* Harflar kattalashadi */
-        color: #ff00ff; /* Pushti rang */
+.tennis-logo img {
+    width: 50px; /* Tennis to'pi emblemasi */
+    margin-bottom: 20px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
     }
-    100% {
-        transform: scale(1); /* Harflar asl holatiga qaytadi */
-        color: #fff; /* Oq rangga qaytadi */
+    50% {
+        transform: translateY(-20px);
     }
 }
 
-/* Tugmalarni joylashtirish */
 .buttons {
     display: flex;
-    flex-direction: column; /* Tugmalarni vertikal ravishda joylashtirish */
-    align-items: center; /* Tugmalarni markazga joylashtirish */
-    gap: 30px; /* Tugmalar orasidagi masofa ochildi */
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 0 30px;
+    position: relative;
 }
 
-/* Tugma uchun stil */
-.start-game {
-    background-color: #6a0dad; /* Binafsha rang */
+.game1, .game2 {
+    position: absolute;
+    bottom: 10%;
+}
+
+.game1 {
+    left: 10%;
+}
+
+.game2 {
+    right: 10%;
+}
+
+button {
+    background-color: #8a2be2; /* Violet rang */
     color: white;
-    border: none;
-    padding: 20px 40px; /* Kattaroq tugma hajmi */
-    margin: 10px 0;
+    border: 2px solid red;
+    padding: 30px 60px;
+    font-size: 1.5em;
     cursor: pointer;
-    font-size: 1.8rem; /* Tugmaning kattaligini oshirish */
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #7a1cb6; /* Bir oz qoraygan variant */
+}
+
+.astronaut img {
+    width: 150px; /* Kosmonavt rasmi */
+    margin-top: 20px;
 }
