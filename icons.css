@@ -1,1 +1,6 @@
-
+.icon {
+    width: 30px;  /* Ikonka kengligi */
+    height: 30px;  /* Ikonka balandligi */
+    margin-right: 10px;  /* Matndan ajratish */
+    vertical-align: middle;  /* Ikonkani matn bilan vertikal o'rtaga joylashtirish */
+}
