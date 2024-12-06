@@ -1,31 +1,56 @@
-const canvas = document.getElementById('pong');
-const ctx = canvas.getContext('2d');
+// Whack-a-Mole O'yini uchun sozlamalar
+const gameBoard = document.getElementById("gameBoard");
 
-const paddleWidth = 10, paddleHeight = 100, ballSize = 10;
-const player = { x: 0, y: canvas.height / 2 - paddleHeight / 2, score: 0 };
-const ai = { x: canvas.width - paddleWidth, y: canvas.height / 2 - paddleHeight / 2, score: 0 };
-const ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 2 };
+// Maydon sozlamalari
+const gridSize = 3; // 3x3 panjara
+const moleDuration = 1000; // Molning ko'rinish muddati (ms)
+let score = 0;
 
-function update() {
-    ball.x += ball.dx;
-    ball.y += ball.dy;
+// O'yin maydonini yaratish
+function createGameBoard() {
+    gameBoard.style.display = "grid";
+    gameBoard.style.gridTemplateRows = repeat(${gridSize}, 1fr);
+    gameBoard.style.gridTemplateColumns = repeat(${gridSize}, 1fr);
+    gameBoard.style.gap = "10px";
 
-    if (ball.y <= 0 || ball.y + ballSize >= canvas.height) ball.dy *= -1;
-    if (ball.x <= player.x + paddleWidth && ball.y > player.y && ball.y < player.y + paddleHeight) ball.dx *= -1;
-    if (ball.x + ballSize >= ai.x && ball.y > ai.y && ball.y < ai.y + paddleHeight) ball.dx *= -1;
+    for (let i = 0; i < gridSize * gridSize; i++) {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        gameBoard.appendChild(cell);
+    }
 }
 
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "white";
-    ctx.fillRect(player.x, player.y, paddleWidth, paddleHeight);
-    ctx.fillRect(ai.x, ai.y, paddleWidth, paddleHeight);
-    ctx.fillRect(ball.x, ball.y, ballSize, ballSize);
+// Mol paydo bo'lishi
+function showMole() {
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach(cell => cell.classList.remove("mole")); // Hamma celllardan "mole"ni olib tashlash
+
+    const randomCell = cells[Math.floor(Math.random() * cells.length)];
+    randomCell.classList.add("mole");
+
+    // Molga bosish hodisasi
+    randomCell.onclick = () => {
+        if (randomCell.classList.contains("mole")) {
+            score++;
+            randomCell.classList.remove("mole");
+            updateScore();
+        }
+    };
+
+    setTimeout(() => {
+        randomCell.classList.remove("mole");
+    }, moleDuration);
 }
 
-function game() {
-    update();
-    draw();
+// Hisobni yangilash
+function updateScore() {
+    document.getElementById("score").innerText = Score: ${score};
 }
-setInterval(game, 20);
 
+// O'yinni boshlash
+function startGame() {
+    setInterval(showMole, moleDuration + 200);
+}
+
+createGameBoard();
+startGame();
