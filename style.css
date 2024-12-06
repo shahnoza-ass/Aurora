@@ -5,10 +5,11 @@
 }
 
 body {
-    background-image: url('background.jpg'); /* Orqa fon rasmi */
+    background-image: url('./images/background.jpg'); /* Orqa fon rasmi */
     background-size: cover;
     font-family: Arial, sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -90,4 +91,8 @@ button:hover {
 .astronaut img {
     width: 150px; /* Kosmonavt rasmi */
     margin-top: 20px;
+}
+.game-title{
+    font-size: 128px;
+    color: #fff;
 }
