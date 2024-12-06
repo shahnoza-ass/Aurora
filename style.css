@@ -1,93 +1,116 @@
-* {
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-image: url('background.jpg'); /* Orqa fon rasmi */
-    background-size: cover;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    background-image: url('assets/images/background.jpg');
+    background-size: cover;
+    background-position: center;
     height: 100vh;
-    animation: backgroundAnimation 20s infinite linear; /* Orqa fon animatsiyasi qo'shildi */
 }
 
-@keyframes backgroundAnimation {
-    0% {
-        background-position: 0 0;
-    }
-    50% {
-        background-position: 100% 100%;
-    }
-    100% {
-        background-position: 0 0;
-    }
-}
-
-.container {
-    text-align: center;
-}
-
-.play-with-me h2 {
-    font-size: 2em;
-    color: white;
-    margin-bottom: 50px;
-}
-
-.tennis-logo img {
-    width: 50px; /* Tennis to'pi emblemasi */
-    margin-bottom: 20px;
-    animation: bounce 1.5s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
+.game-title {
+    font-size: 4rem;
+    margin: 20px 0;
 }
 
 .buttons {
+    margin: 20px;
     display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    padding: 0 30px;
-    position: relative;
-}
-
-.game1, .game2 {
-    position: absolute;
-    bottom: 10%;
-}
-
-.game1 {
-    left: 10%;
-}
-
-.game2 {
-    right: 10%;
+    gap: 10px;
 }
 
 button {
-    background-color: #8a2be2; /* Violet rang */
-    color: white;
-    border: 2px solid red;
-    padding: 30px 60px;
-    font-size: 1.5em;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #6a0dad;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(106, 13, 173, 0.5);
 }
 
 button:hover {
-    background-color: #7a1cb6; /* Bir oz qoraygan variant */
+    background-color: #6a0dad;
+    box-shadow: 0 0 30px rgba(106, 13, 173, 0.8);
 }
 
-.astronaut img {
-    width: 150px; /* Kosmonavt rasmi */
-    margin-top: 20px;
+.game-section {
+    display: none;
+    margin: 20px;
+}
+
+#pong-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(135deg, #000428, #004e92);
+    border: 2px solid #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    margin: 20px;
+}
+
+#pong {
+    background-color: #222;
+    border: 3px solid #6a0dad;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(106, 13, 173, 0.7);
+}
+
+#whack-a-mole-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(135deg, #42275a, #734b6d);
+    border: 2px solid #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    padding: 20px;
+}
+
+.score-container {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 20px;
+}
+
+.hole {
+    width: 100px;
+    height: 100px;
+    background: #6a0dad;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(106, 13, 173, 0.8);
+}
+
+.mole {
+    width: 80px;
+    height: 80px;
+    background: url('assets/images/mole.png') no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    bottom: -80px;
+    transition: bottom 0.3s ease-out;
+}
+
+.hole.up .mole {
+    bottom: 10px;
 }
