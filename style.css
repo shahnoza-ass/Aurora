@@ -2,115 +2,58 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    color: #fff;
+    color: white;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background-image: url('assets/images/background.jpg');
-    background-size: cover;
-    background-position: center;
     height: 100vh;
-}
-
-.game-title {
-    font-size: 4rem;
-    margin: 20px 0;
-}
-
-.buttons {
-    margin: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-button {
-    padding: 15px 30px;
-    font-size: 1.5rem;
-    background-color: transparent;
-    color: #fff;
-    border: 2px solid #6a0dad;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(106, 13, 173, 0.5);
-}
-
-button:hover {
-    background-color: #6a0dad;
-    box-shadow: 0 0 30px rgba(106, 13, 173, 0.8);
-}
-
-.game-section {
-    display: none;
-    margin: 20px;
-}
-
-#pong-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background: linear-gradient(135deg, #000428, #004e92);
-    border: 2px solid #fff;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    margin: 20px;
-}
-
-#pong {
-    background-color: #222;
-    border: 3px solid #6a0dad;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(106, 13, 173, 0.7);
-}
-
-#whack-a-mole-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background: linear-gradient(135deg, #42275a, #734b6d);
-    border: 2px solid #fff;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    padding: 20px;
-}
-
-.score-container {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    margin-bottom: 20px;
-}
-
-.game-container {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    gap: 20px;
-}
-
-.hole {
-    width: 100px;
-    height: 100px;
-    background: #6a0dad;
-    border-radius: 50%;
-    position: relative;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(106, 13, 173, 0.8);
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    animation: auroraAnim 10s infinite alternate;
 }
 
-.mole {
-    width: 80px;
-    height: 80px;
-    background: url('assets/images/mole.png') no-repeat center center;
-    background-size: contain;
-    position: absolute;
-    bottom: -80px;
-    transition: bottom 0.3s ease-out;
+@keyframes auroraAnim {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
 }
 
-.hole.up .mole {
-    bottom: 10px;
+.container {
+    text-align: center;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.games {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.game {
+    text-align: center;
+}
+
+.game img {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.play-button {
+    padding: 10px 20px;
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
 }
