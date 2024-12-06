@@ -1,56 +1,95 @@
-// Whack-a-Mole O'yini uchun sozlamalar
-const gameBoard = document.getElementById("gameBoard");
+document.addEventListener(
+    "DOMContentLoaded", function () {
+    const holes = 
+        document.querySelectorAll(".hole");
+    const startButton = 
+        document.getElementById("startButton");
+    const endButton = 
+        document.getElementById("endButton");
+    const scoreDisplay = 
+        document.getElementById("score");
+    const timerDisplay = 
+        document.getElementById("timer");
 
-// Maydon sozlamalari
-const gridSize = 3; // 3x3 panjara
-const moleDuration = 1000; // Molning ko'rinish muddati (ms)
-let score = 0;
+    let timer;
+    let score = 0;
+    let countdown;
+    let moleInterval;
+    
+    // Set the initial state to game over
+    let gameOver = true; 
 
-// O'yin maydonini yaratish
-function createGameBoard() {
-    gameBoard.style.display = "grid";
-    gameBoard.style.gridTemplateRows = repeat(${gridSize}, 1fr);
-    gameBoard.style.gridTemplateColumns = repeat(${gridSize}, 1fr);
-    gameBoard.style.gap = "10px";
+    function comeout() {
+        holes.forEach(hole => {
+            hole.classList.remove('mole');
+            hole.removeEventListener(
+                'click', handleMoleClick);
+        });
 
-    for (let i = 0; i < gridSize * gridSize; i++) {
-        const cell = document.createElement("div");
-        cell.classList.add("cell");
-        gameBoard.appendChild(cell);
+        let random = holes[Math.floor(Math.random() * 9)];
+
+        random.classList.add('mole');
+        random.addEventListener('click', handleMoleClick);
     }
-}
 
-// Mol paydo bo'lishi
-function showMole() {
-    const cells = document.querySelectorAll(".cell");
-    cells.forEach(cell => cell.classList.remove("mole")); // Hamma celllardan "mole"ni olib tashlash
-
-    const randomCell = cells[Math.floor(Math.random() * cells.length)];
-    randomCell.classList.add("mole");
-
-    // Molga bosish hodisasi
-    randomCell.onclick = () => {
-        if (randomCell.classList.contains("mole")) {
+    function handleMoleClick() {
+        if (!gameOver) {
             score++;
-            randomCell.classList.remove("mole");
-            updateScore();
+            scoreDisplay.textContent = `Score: ${score}`;
         }
-    };
+        this.classList.remove('mole');
+    }
 
-    setTimeout(() => {
-        randomCell.classList.remove("mole");
-    }, moleDuration);
-}
+    function startGame() {
+        if (!gameOver) {
+        
+            // Prevent starting the game 
+            // again if it's already in progress
+            return;
+        }
 
-// Hisobni yangilash
-function updateScore() {
-    document.getElementById("score").innerText = Score: ${score};
-}
+        gameOver = false;
+        score = 0;
+        scoreDisplay.textContent = `Score: ${score}`;
+        timer = 60;
+        timerDisplay.textContent = `Time: ${timer}s`;
 
-// O'yinni boshlash
-function startGame() {
-    setInterval(showMole, moleDuration + 200);
-}
+        startButton.disabled = true;
+        endButton.disabled = false;
 
-createGameBoard();
-startGame();
+        countdown = setInterval(() => {
+            timer--;
+            timerDisplay.textContent = `Time: ${timer}s`;
+
+            if (timer <= 0) {
+                clearInterval(countdown);
+                gameOver = true;
+                alert(`Game Over!\nYour final score: ${score}`);
+                startButton.disabled = false;
+                endButton.disabled = true;
+            }
+        }, 1000);
+
+        moleInterval = setInterval(() => {
+            if (!gameOver) comeout();
+        }, 1000);
+
+        console.log("Game started");
+    }
+
+    function endGame() {
+        clearInterval(countdown);
+        clearInterval(moleInterval);
+        gameOver = true;
+        alert(`Game Ended!\nYour final score: ${score}`);
+        score = 0;
+        timer = 60;
+        scoreDisplay.textContent = `Score: ${score}`;
+        timerDisplay.textContent = `Time: ${timer}s`;
+        startButton.disabled = false;
+        endButton.disabled = true;
+    }
+
+    startButton.addEventListener("click", startGame);
+    endButton.addEventListener("click", endGame);
+});
