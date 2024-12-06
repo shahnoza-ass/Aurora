@@ -3,33 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURORO</title>
+    <title>AURORA</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 class="game-title">AURORO</h1>
-    <div class="buttons">
-        <button id="start-pong">Game 1: Pong</button>
-        <button id="start-whack">Game 2: Whack-a-Mole</button>
+    <div class="container">
+        <h1 class="title">Play with me!</h1>
+        <div class="games">
+            <div class="game">
+                <img src="pingpong-icon.png" alt="Pong Game">
+                <button class="play-button" onclick="window.location.href='pong.html'">Play</button>
+            </div>
+            <div class="game">
+                <img src="whackamole-icon.png" alt="Whack-a-Mole">
+                <button class="play-button" onclick="window.location.href='whack-a-mole.html'">Play</button>
+            </div>
+        </div>
+        <footer>
+            <p>AURORA</p>
+        </footer>
     </div>
-    <section id="pong-section" class="game-section">
-        <canvas id="pong" width="800" height="400"></canvas>
-    </section>
-    <section id="whack-a-mole-section" class="game-section">
-        <div class="score-container">
-            <p>Score: <span class="score">0</span></p>
-        </div>
-        <div class="game-container">
-            <div class="hole"><div class="mole"></div></div>
-            <div class="hole"><div class="mole"></div></div>
-            <div class="hole"><div class="mole"></div></div>
-            <div class="hole"><div class="mole"></div></div>
-            <div class="hole"><div class="mole"></div></div>
-            <div class="hole"><div class="mole"></div></div>
-        </div>
-    </section>
-    <script src="js/pong.js"></script>
-    <script src="js/whack-a-mole.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>
