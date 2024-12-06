@@ -1,4 +1,3 @@
-Feruza, [06.12.2024 15:11]
 // Global Variables
 var DIRECTION = {
     IDLE: 0,
@@ -134,7 +133,6 @@ var Game = {
  
             // O
 
-Feruza, [06.12.2024 15:11]
 n new serve (start of each turn) move the ball to the correct side
             // and randomize the direction to add some challenge.
             if (Pong._turnDelayIsOver.call(this) && this.turn) {
@@ -220,7 +218,6 @@ n new serve (start of each turn) move the ball to the correct side
             0,
             0,
 
-Feruza, [06.12.2024 15:11]
 this.canvas.width,
             this.canvas.height
         );
@@ -356,7 +353,6 @@ this.canvas.width,
  
     // Select a random color as the background of each level/round.
 
-Feruza, [06.12.2024 15:11]
 _generateRoundColor: function () {
         var newColor = colors[Math.floor(Math.random() * colors.length)];
         if (newColor === this.color) return Pong._generateRoundColor();
